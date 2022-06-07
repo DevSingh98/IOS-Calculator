@@ -31,11 +31,22 @@ enum CalcButton: String{
     var buttonColor: Color {
         switch self {
         case .add, .subtract, .multiply, .divide, .equal:
-            return .orange
+            return .blue
         case .clear, .negative, .percent:
             return Color(.lightGray)
         default:
             return Color(.darkGray)
+        }
+    }
+    
+    var buttonTextColor: Color {
+        switch self {
+//        case .add, .subtract, .multiply, .divide, .equal:
+//            return .blue
+        case .clear, .negative, .percent:
+            return Color(.black)
+        default:
+            return Color(.white)
         }
     }
 }
@@ -89,7 +100,7 @@ struct ContentView: View {
                                     .font(.system(size: 32)) //Button font size
                                     .frame(width: self.buttonWidth(item: item), height: self.buttonHeight()) //Button height and width
                                     .background(item.buttonColor) //Button background color
-                                    .foregroundColor(.white) //Button font color
+                                    .foregroundColor(item.buttonTextColor) //Button font color
                                     .cornerRadius(self.buttonWidth(item: item)/2) //Makes the Button round
                             })
                         }
@@ -154,7 +165,7 @@ struct ContentView: View {
     //Function to calculate button width based on screen size (Take the width of the screen, subtract the padding between each column and then divide by the number of columns we have)
     func buttonWidth(item: CalcButton) -> CGFloat {
         if item == .zero {//special case for 0 since we want zero to take up two columns
-            return ((UIScreen.main.bounds.width - (5*12))/4)*2
+            return ((UIScreen.main.bounds.width - (5*6))/4)*2
         }
         return (UIScreen.main.bounds.width - (5*12))/4
     }

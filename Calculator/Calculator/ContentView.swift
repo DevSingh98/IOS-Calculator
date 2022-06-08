@@ -61,7 +61,7 @@ struct ContentView: View {
     
     @State var value = "0"
     
-    @State var runningNumber = 0
+    @State var runningNumber = 0.0
     //Is a state variable since regular vars are immutable inside views
     @State var currentOperation: Operation = .none
     
@@ -78,6 +78,9 @@ struct ContentView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack{
+                Link("Created by Deveshwar Singh", destination: URL(string: "https://www.deveshwarsingh.com")!)
+                    .font(.system(size: 12))
+  
                 Spacer()
                 //Text Display
                 HStack{
@@ -117,23 +120,23 @@ struct ContentView: View {
         case .add, .subtract, .multiply, .divide, .equal:
             if button == .add{
                 self.currentOperation = .add
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .subtract{
                 self.currentOperation = .subtract
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .multiply{
                 self.currentOperation = .multiply
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .divide{
                 self.currentOperation = .divide
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .equal{ // if operation is equal, we take the current value and apply the opperation to it
                 let runningValue = self.runningNumber
-                let currentValue = Int(self.value) ?? 0
+                let currentValue = Double(self.value) ?? 0
                 switch self.currentOperation{
                     case .add: self.value = "\(runningValue + currentValue)"
                     case .subtract: self.value = "\(runningValue - currentValue)"
@@ -149,8 +152,21 @@ struct ContentView: View {
             }
         case .clear:
             self.value = "0"
-        case .decimal, .negative, .percent:
-            break
+        case .percent:
+            let number = Double(self.value) ?? 0
+            let percent = number / 100
+            self.value = String(percent)
+        case .decimal:
+            self.value = self.value + "."
+        case .negative:
+            let number = Double(self.value) ?? 0
+            if self.value == "0" {
+                value = String(number)
+            }
+            else{
+                let negate = -1 * number
+                self.value = String(negate)
+            }
         default:// button is a number so number will display self
             let number = button.rawValue
             if self.value == "0" {

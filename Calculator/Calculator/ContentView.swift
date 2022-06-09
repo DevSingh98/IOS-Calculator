@@ -38,11 +38,8 @@ enum CalcButton: String{
             return Color(.darkGray)
         }
     }
-    
     var buttonTextColor: Color {
         switch self {
-//        case .add, .subtract, .multiply, .divide, .equal:
-//            return .blue
         case .clear, .negative, .percent:
             return Color(.black)
         default:
@@ -80,7 +77,6 @@ struct ContentView: View {
             VStack{
                 Link("Created by Deveshwar Singh", destination: URL(string: "https://www.deveshwarsingh.com")!)
                     .font(.system(size: 12))
-  
                 Spacer()
                 //Text Display
                 HStack{
@@ -104,6 +100,7 @@ struct ContentView: View {
                                     .frame(width: self.buttonWidth(item: item), height: self.buttonHeight()) //Button height and width
                                     .background(item.buttonColor) //Button background color
                                     .foregroundColor(item.buttonTextColor) //Button font color
+
                                     .cornerRadius(self.buttonWidth(item: item)/2) //Makes the Button round
                             })
                         }

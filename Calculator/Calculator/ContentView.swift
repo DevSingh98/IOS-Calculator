@@ -31,11 +31,19 @@ enum CalcButton: String{
     var buttonColor: Color {
         switch self {
         case .add, .subtract, .multiply, .divide, .equal:
-            return .orange
+            return .blue
         case .clear, .negative, .percent:
             return Color(.lightGray)
         default:
             return Color(.darkGray)
+        }
+    }
+    var buttonTextColor: Color {
+        switch self {
+        case .clear, .negative, .percent:
+            return Color(.black)
+        default:
+            return Color(.white)
         }
     }
 }
@@ -50,7 +58,7 @@ struct ContentView: View {
     
     @State var value = "0"
     
-    @State var runningNumber = 0
+    @State var runningNumber = 0.0
     //Is a state variable since regular vars are immutable inside views
     @State var currentOperation: Operation = .none
     
@@ -67,6 +75,8 @@ struct ContentView: View {
             Color.black.edgesIgnoringSafeArea(.all)
             
             VStack{
+                Link("Created by Deveshwar Singh", destination: URL(string: "https://www.deveshwarsingh.com")!)
+                    .font(.system(size: 12))
                 Spacer()
                 //Text Display
                 HStack{
@@ -89,7 +99,8 @@ struct ContentView: View {
                                     .font(.system(size: 32)) //Button font size
                                     .frame(width: self.buttonWidth(item: item), height: self.buttonHeight()) //Button height and width
                                     .background(item.buttonColor) //Button background color
-                                    .foregroundColor(.white) //Button font color
+                                    .foregroundColor(item.buttonTextColor) //Button font color
+
                                     .cornerRadius(self.buttonWidth(item: item)/2) //Makes the Button round
                             })
                         }
@@ -106,23 +117,23 @@ struct ContentView: View {
         case .add, .subtract, .multiply, .divide, .equal:
             if button == .add{
                 self.currentOperation = .add
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .subtract{
                 self.currentOperation = .subtract
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .multiply{
                 self.currentOperation = .multiply
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .divide{
                 self.currentOperation = .divide
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .equal{ // if operation is equal, we take the current value and apply the opperation to it
                 let runningValue = self.runningNumber
-                let currentValue = Int(self.value) ?? 0
+                let currentValue = Double(self.value) ?? 0
                 switch self.currentOperation{
                     case .add: self.value = "\(runningValue + currentValue)"
                     case .subtract: self.value = "\(runningValue - currentValue)"
@@ -138,8 +149,21 @@ struct ContentView: View {
             }
         case .clear:
             self.value = "0"
-        case .decimal, .negative, .percent:
-            break
+        case .percent:
+            let number = Double(self.value) ?? 0
+            let percent = number / 100
+            self.value = String(percent)
+        case .decimal:
+            self.value = self.value + "."
+        case .negative:
+            let number = Double(self.value) ?? 0
+            if self.value == "0" {
+                value = String(number)
+            }
+            else{
+                let negate = -1 * number
+                self.value = String(negate)
+            }
         default:// button is a number so number will display self
             let number = button.rawValue
             if self.value == "0" {
@@ -154,7 +178,7 @@ struct ContentView: View {
     //Function to calculate button width based on screen size (Take the width of the screen, subtract the padding between each column and then divide by the number of columns we have)
     func buttonWidth(item: CalcButton) -> CGFloat {
         if item == .zero {//special case for 0 since we want zero to take up two columns
-            return ((UIScreen.main.bounds.width - (5*12))/4)*2
+            return ((UIScreen.main.bounds.width - (5*6))/4)*2
         }
         return (UIScreen.main.bounds.width - (5*12))/4
     }

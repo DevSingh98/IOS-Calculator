@@ -25,3 +25,6 @@ This repository contains a Swift/SwiftUI-based iOS calculator app designed to pr
 
 ## Upcoming Features
 - **Scientific functions**: Logs, e, and distributions.
+
+## Known issues:
+- Percentage button is off-centered 

@@ -28,4 +28,4 @@ This repository contains a Swift/SwiftUI-based iOS calculator app designed to pr
 
 ## Known issues:
 - Percentage button is off-centered
-- Clear resets on screen value to 0.0
+- Clear resets on screen value to 0.0 

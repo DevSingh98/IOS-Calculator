@@ -27,4 +27,5 @@ This repository contains a Swift/SwiftUI-based iOS calculator app designed to pr
 - **Scientific functions**: Logs, e, and distributions.
 
 ## Known issues:
-- Percentage button is off-centered 
+- Percentage button is off-centered
+- Clear resets on screen value to 0.0

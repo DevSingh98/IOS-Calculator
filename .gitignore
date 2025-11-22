@@ -27,7 +27,8 @@ project.xcworkspace/xcuserdata/
 ## SwiftPM
 .swiftpm/
 .build/
-Package.resolved
+# Do NOT ignore Package.resolved (commit it)
+# Package.resolved
 
 ## Carthage
 Carthage/Build/

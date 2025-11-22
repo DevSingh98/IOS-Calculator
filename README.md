@@ -54,4 +54,5 @@ A modern iOS Calculator app built with Swift and SwiftUI following MVVM architec
 - Button animation could be smoother during rapid taps
 - Display font size doesn't scale with accessibility settings
 
-<img width="378" alt="Calculator Screenshot" src="https://user-images.githubusercontent.com/39712568/172404130-4b9e9277-b3d6-4413-94e7-86b2c41be0a9.png">
+<img width="417" height="792" alt="Screenshot 2025-11-22 at 5 14 21 PM" src="https://github.com/user-attachments/assets/ed3d5839-78b6-4a1c-9476-25f313b70bb2" />
+

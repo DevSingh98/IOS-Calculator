@@ -1,0 +1,71 @@
+# ===========================================
+# Xcode / iOS / Swift / SwiftUI .gitignore
+# ===========================================
+
+## Build artifacts
+DerivedData/
+Build/
+build/
+
+## Xcode workspace & user settings
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+xcuserdata/
+xcshareddata/
+
+## Xcode-specific files
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcodeproj/project.xcworkspace/xcuserdata/
+project.xcworkspace/xcuserdata/
+
+## SwiftPM
+.swiftpm/
+.build/
+Package.resolved
+
+## Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+## CocoaPods
+Pods/
+podfile.lock
+*.xcworkspace
+
+## Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+## Archives
+*.xcarchive
+
+## App artifacts
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.app
+
+## Simulator files
+*.simctl
+
+## SwiftLint / SwiftFormat logs
+.swiftlint_tmp/
+.swiftformat_tmp/
+
+## OS files
+.DS_Store
+*.swp
+*.lock
+*.tmp
+
+## Misc
+*.orig
+*.rej

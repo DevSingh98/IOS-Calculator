@@ -1,31 +1,58 @@
-# iOS Calculator App
+# iOS Calculator
 
-## Overview
-This repository contains a Swift/SwiftUI-based iOS calculator app designed to provide a clean, user-friendly interface for basic and advanced mathematical calculations. The app is optimized for performance and usability, showcasing modern SwiftUI design patterns and best practices.
+A modern iOS Calculator app built with Swift and SwiftUI following MVVM architecture patterns.
 
 ## Features
-- **Basic Arithmetic**: Perform addition, subtraction, multiplication, and division.
-- **Advanced Operations**: Includes functionality for square roots, percentages, and more.
-- **Responsive Design**: Adaptive UI that works seamlessly on all iOS devices (iPhone and iPad).
-- **Dark Mode Support**: Automatically adjusts to the system-wide appearance settings.
-- **Error Handling**: Graceful handling of invalid inputs and edge cases.
 
-## Technologies Used
-- **Swift**: The core programming language for app logic.
-- **SwiftUI**: Used for building the user interface with a declarative approach.
-- **Combine**: For managing state and reactive programming.
+- **Clean MVVM Architecture**: Proper separation of Model, View, and ViewModel layers
+- **Mathematical Symbols**: Uses proper Unicode symbols (×, ÷, −) for operations
+- **Precision Handling**: Maintains full calculation precision while formatting display
+- **Smart Number Formatting**: Automatically formats long decimals and removes trailing zeros
+- **Responsive UI**: Adapts button sizing based on screen dimensions
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/ios-calculator.git
-    ```
+## Architecture
 
-<img width="378" alt="Screen Shot 2022-06-07 at 10 20 16 AM" src="https://user-images.githubusercontent.com/39712568/172404130-4b9e9277-b3d6-4413-94e7-86b2c41be0a9.png">
+### Model (`CalculatorModel.swift`)
+- Contains data structures and business logic
+- Defines button layouts and operation enums
+- Handles mathematical operations
+
+### ViewModel (`CalculatorViewModel.swift`)
+- Manages application state using `@Published` properties
+- Handles user interactions and business logic
+- Formats display values while preserving calculation precision
+
+### View (`ContentView.swift`)
+- Pure UI presentation layer
+- Observes ViewModel changes via `@StateObject`
+- Responsive button layout with proper spacing
+
+## Technical Highlights
+
+- **State Management**: Uses SwiftUI's `ObservableObject` for reactive updates
+- **Number Precision**: Separates display formatting from internal calculation values
+- **Error Prevention**: Handles edge cases like division by zero and invalid inputs
+- **Memory Efficient**: Minimal state management with proper cleanup
+
+## Requirements
+
+- iOS 14.0+
+- Xcode 12.0+
+- Swift 5.3+
 
 ## Upcoming Features
-- **Scientific functions**: Logs, e, and distributions.
 
-## Known issues:
-- Percentage button is off-centered
-- Clear resets on screen value to 0.0
+- **Scientific Calculator**: Landscape mode with advanced functions (sin, cos, tan, ln, log, √)
+- **Memory Functions**: M+, M-, MR, MC operations
+- **History**: View and reuse previous calculations
+- **Themes**: Dark/Light mode support and custom color schemes
+- **Haptic Feedback**: Tactile response for button presses
+
+## Known Issues
+
+- Decimal input validation needs improvement for edge cases
+- Button animation could be smoother during rapid taps
+- Display font size doesn't scale with accessibility settings
+
+<img width="417" height="792" alt="Screenshot 2025-11-22 at 5 14 21 PM" src="https://github.com/user-attachments/assets/ed3d5839-78b6-4a1c-9476-25f313b70bb2" />
+
